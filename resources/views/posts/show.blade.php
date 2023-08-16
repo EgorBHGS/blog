@@ -33,6 +33,9 @@
                                 <img src="{{ asset('assets/images/author-image1.jpg') }}" class="img-circle img-responsive" alt="blog">
                             </div>
                             <div class="media-body">
+                                <div class="button">
+                                    <a href="{{ route('posts.edit', [$post]) }}">Редактировать</a>
+                                </div>
                             </div>
                         </div>
                     </div>
