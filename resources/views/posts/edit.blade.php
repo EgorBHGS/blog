@@ -2,8 +2,10 @@
 
 <h2>Редактировать пост {{ $post->title }}</h2>
 
-<form action="{{ route('$posts.update' [$post]) }}" method="post">
+
+<form action="{{ route('posts.update', [$post]) }}" method="post">
     @csrf
+    @method('put')
     <label for="title">
         <input type="text" name="title" id="title" value="{{ $post->title }}">
     </label>

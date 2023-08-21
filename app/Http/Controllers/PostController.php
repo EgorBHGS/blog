@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\PostRequest;
 use App\Models\Post;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
@@ -56,7 +57,7 @@ class PostController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Post $post)
+    public function edit(Post $post): View|Application|Factory
     {
         return view('posts.edit', compact('post'));
     }
@@ -64,9 +65,13 @@ class PostController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Post $post)
+    public function update(PostRequest $request, Post $post)
     {
-        dd($request->all());
+        $data = $request->validated();
+
+        $post->update($data);
+
+        return response()->redirectToRoute('posts.show', $post);
     }
 
     /**
