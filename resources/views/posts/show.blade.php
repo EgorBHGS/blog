@@ -25,7 +25,7 @@
 
                     <div class="blog-single-post-image">
 
-                        <p>{{ $post->content }}</p>
+                        <p>{!! $post->content !!}</p>
 
                     <div class="blog-author">
                         <div class="media">
