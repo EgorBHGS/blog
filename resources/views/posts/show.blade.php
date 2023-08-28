@@ -42,15 +42,17 @@
 
                     <div class="blog-comment">
                         <h3>Comments</h3>
+                        @foreach($post->comments as $comment)
                         <div class="media">
                             <div class="media-object pull-left">
                                 <img src="{{ asset('assets/images/comment-image1.jpg') }}" class="img-responsive img-circle" alt="Blog Image 11">
                             </div>
                             <div class="media-body">
-                                <h3 class="media-heading">David Jones</h3>
-                                <span>3 days ago</span>
-                                <p>Aliquam gravida arcu at risus blandit, in interdum metus varius. Cras efficitur, ex sit amet tincidunt rhoncus, dui ex hendrerit risus, ac dapibus ligula mi id leo. In auctor dui justo, ac consequat dui posuere ac.</p>
+                                <h3 class="media-heading">{{ $comment->user->name }}</h3>
+                                <span>{{ $comment->created_at }}</span>
+                                <p>{{ $comment->content }}</p>
                             </div>
+                            @endforeach
                         </div>
 
                     <div class="blog-comment-form">
