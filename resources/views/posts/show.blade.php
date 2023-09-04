@@ -55,17 +55,18 @@
                             @endforeach
                         </div>
 
+                    @if(auth()->user())
                     <div class="blog-comment-form">
                         <h3>Написать комментарий...</h3>
-                        <form action="#" method="post">
-                            <input type="text" class="form-control" placeholder="Name" name="name" required>
-                            <input type="email" class="form-control" placeholder="Email" name="email" required>
+                        <form action="{{ route('comment.create') }}" method="post">
+                            @csrf
                             <textarea name="message" rows="5" class="form-control" id="message" placeholder="Message" message="message" required="required"></textarea>
                             <div class="col-md-3 col-sm-4">
                                 <input name="submit" type="submit" class="form-control" id="submit" value="Post Your Comment">
                             </div>
                         </form>
                     </div>
+                    @endif
                 </div>
             </div>
         </div>
