@@ -41,7 +41,7 @@
                     </div>
 
                     <div class="blog-comment">
-                        <h3>Comments</h3>
+                        <h3>Комментарий</h3>
                         @foreach($post->comments as $comment)
                         <div class="media">
                             <div class="media-object pull-left">
@@ -51,6 +51,11 @@
                                 <h3 class="media-heading">{{ $comment->user->name }}</h3>
                                 <span>{{ $comment->created_at }}</span>
                                 <p>{{ $comment->content }}</p>
+                                <form action="{{ route('comment.delete', [$comment]) }}" method="post">
+                                    @csrf
+                                    @method('delete')
+                                    <input type="submit" id="btn_delete" value="&#128465" onclick="return confirm('Удалить?')">
+                                </form>
                             </div>
                             @endforeach
                         </div>
@@ -60,7 +65,8 @@
                         <h3>Написать комментарий...</h3>
                         <form action="{{ route('comment.create') }}" method="post">
                             @csrf
-                            <textarea name="message" rows="5" class="form-control" id="message" placeholder="Message" message="message" required="required"></textarea>
+                            <input type="hidden" name="post_id" value="{{ $post->id }}">
+                            <textarea name="content" rows="5" class="form-control" id="message" placeholder="Написать комментарий" message="message" required="required"></textarea>
                             <div class="col-md-3 col-sm-4">
                                 <input name="submit" type="submit" class="form-control" id="submit" value="Post Your Comment">
                             </div>

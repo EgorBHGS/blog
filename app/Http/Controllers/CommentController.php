@@ -13,9 +13,18 @@ class CommentController extends Controller
      */
     public function store(CommentStoreRequest $request)
     {
-        $data = $request->validated();
-        $user = auth()->user();
-        Comment::query()->create($data);
+
+        {
+            $data = $request->validated();
+
+            $comment = new Comment();
+            $comment->user_id = auth()->user()->id;
+            $comment->content = $data['content'];
+            $comment->post_id = $data['post_id'];
+            $comment->save();
+
+            return response()->redirectToRoute('posts.show', $data['post_id']);
+        }
     }
 
     /**
@@ -23,6 +32,9 @@ class CommentController extends Controller
      */
     public function destroy(Comment $comment)
     {
-        //
+        $postId = $comment->post_id;
+        $comment->delete();
+
+        return redirect()->route('posts.show', $postId);
     }
 }
