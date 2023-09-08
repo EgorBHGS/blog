@@ -56,9 +56,37 @@
                 <li><a href="about.html">About</a></li>
                 <li><a href="gallery.html">Gallery</a></li>
                 <li><a href="contact.html">Contact</a></li>
+                @auth
+                    <li><a href="{{ route('profile.edit') }}"></a>Profile</li>
+                @else
+                    <li>
+                        <a href="{{ route('login') }}"
+                           class="font-semibold
+                           text-gray-600
+                           hover:text-gray-900
+                           dark:text-gray-400
+                           dark:hover:text-white
+                           focus:outline
+                           focus:outline-2
+                           focus:rounded-sm
+                           focus:outline-red-500">Log in</a>
+                    </li>
+                    <li>
+                        <a href="{{ route('register') }}"
+                           class="ml-4
+                           font-semibold
+                           text-gray-600
+                           hover:text-gray-900
+                           dark:text-gray-400
+                           dark:hover:text-white
+                           focus:outline
+                           focus:outline-2
+                           focus:rounded-sm
+                           focus:outline-red-500">Register</a>
+                    </li>
+                @endauth
             </ul>
         </div>
-
     </div>
 </div>
 
